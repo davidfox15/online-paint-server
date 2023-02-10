@@ -59,6 +59,9 @@ app.post('/image', (req, res) => {
 
 app.get('/image', (req, res) => {
   try {
+    if (!fs.existsSync('files')) {
+      fs.mkdirSync('files')
+    }
     const file = fs.readFileSync(
       path.resolve(__dirname, 'files', `${req.query.id}.jpg`),
     )
